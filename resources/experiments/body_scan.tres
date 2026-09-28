@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Experiment" format=3 uid="uid://do0arbcwhpu2d"]
+
+[ext_resource type="Script" uid="uid://c74885ce11ttp" path="res://resources/experiment.gd" id="1_ok413"]
+[ext_resource type="PackedScene" uid="uid://bqopef1totopf" path="res://prefabs/tasks/body_scan/body_scan.tscn" id="2_38a6q"]
+
+[resource]
+script = ExtResource("1_ok413")
+experiment_name = "Body Scan"
+experiment_duration = 60
+start_marker = 6
+task_node = ExtResource("2_38a6q")
+metadata/_custom_type_script = "uid://c74885ce11ttp"

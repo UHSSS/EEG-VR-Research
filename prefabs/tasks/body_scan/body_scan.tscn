@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bqopef1totopf"]
+
+[ext_resource type="AudioStream" uid="uid://bv6tme66l5fy3" path="res://assets/audio/1 Minute Guided Body Scan Meditation for Beginners.mp3" id="1_28cpm"]
+
+[node name="BodyScan" type="Node3D" unique_id=1972310376]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1684179760]
+stream = ExtResource("1_28cpm")
+autoplay = true
+
+[node name="Label" type="Label3D" parent="." unique_id=1797207648]
+text = "Body Scan Experiment
+Close Your Eyes"
+font_size = 64

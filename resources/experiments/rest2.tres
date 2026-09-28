@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Experiment" format=3 uid="uid://klguljodwpmp"]
+
+[ext_resource type="Script" uid="uid://c74885ce11ttp" path="res://resources/experiment.gd" id="1_ooldg"]
+[ext_resource type="PackedScene" uid="uid://chyw20yy3eykd" path="res://prefabs/tasks/rest/rest.tscn" id="2_fge8h"]
+
+[resource]
+script = ExtResource("1_ooldg")
+experiment_name = "Rest"
+experiment_duration = 60
+task_node = ExtResource("2_fge8h")
+metadata/_custom_type_script = "uid://c74885ce11ttp"

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bfgnyqta4jlfl"]
+
+[ext_resource type="Script" uid="uid://c3a77m1e42ud2" path="res://prefabs/player/player.gd" id="1_rdx4y"]
+[ext_resource type="Script" uid="uid://b18kkstg643yw" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="1_sxsrd"]
+
+[node name="Player" type="XROrigin3D" unique_id=400043145 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_rdx4y")
+camera = NodePath("XRCamera3D")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=217674305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="LeftTrackedHand" type="XRNode3D" parent="." unique_id=2093547855]
+tracker = &"/user/hand_tracker/left"
+
+[node name="OpenXRFbHandTrackingMesh" type="OpenXRFbHandTrackingMesh" parent="LeftTrackedHand" unique_id=38598902]
+
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="LeftTrackedHand/OpenXRFbHandTrackingMesh" unique_id=1757763880]
+
+[node name="RightTrackedHand" type="XRNode3D" parent="." unique_id=1482598910]
+tracker = &"/user/hand_tracker/right"
+
+[node name="OpenXRFbHandTrackingMesh" type="OpenXRFbHandTrackingMesh" parent="RightTrackedHand" unique_id=1721836620]
+hand = 1
+bones/0/name = "RightPalm"
+bones/1/name = "RightHand"
+bones/2/name = "RightThumbMetacarpal"
+bones/3/name = "RightThumbProximal"
+bones/4/name = "RightThumbDistal"
+bones/5/name = "RightThumbTip"
+bones/6/name = "RightIndexMetacarpal"
+bones/7/name = "RightIndexProximal"
+bones/8/name = "RightIndexIntermediate"
+bones/9/name = "RightIndexDistal"
+bones/10/name = "RightIndexTip"
+bones/11/name = "RightMiddleMetacarpal"
+bones/12/name = "RightMiddleProximal"
+bones/13/name = "RightMiddleIntermediate"
+bones/14/name = "RightMiddleDistal"
+bones/15/name = "RightMiddleTip"
+bones/16/name = "RightRingMetacarpal"
+bones/17/name = "RightRingProximal"
+bones/18/name = "RightRingIntermediate"
+bones/19/name = "RightRingDistal"
+bones/20/name = "RightRingTip"
+bones/21/name = "RightLittleMetacarpal"
+bones/22/name = "RightLittleProximal"
+bones/23/name = "RightLittleIntermediate"
+bones/24/name = "RightLittleDistal"
+bones/25/name = "RightLittleTip"
+
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="RightTrackedHand/OpenXRFbHandTrackingMesh" unique_id=869315110]
+hand_tracker = &"/user/hand_tracker/right"
+
+[node name="LeftVirtualController" type="XRController3D" parent="." unique_id=44265712]
+tracker = &"left_hand"
+
+[node name="XRToolsFunctionPickup" type="Node3D" parent="LeftVirtualController" unique_id=756587794]
+script = ExtResource("1_sxsrd")
+metadata/_custom_type_script = "uid://b18kkstg643yw"
+
+[node name="RightVirtualController" type="XRController3D" parent="." unique_id=149465615]
+tracker = &"right_hand"
+
+[node name="XRToolsFunctionPickup" type="Node3D" parent="RightVirtualController" unique_id=787748730]
+script = ExtResource("1_sxsrd")
+metadata/_custom_type_script = "uid://b18kkstg643yw"

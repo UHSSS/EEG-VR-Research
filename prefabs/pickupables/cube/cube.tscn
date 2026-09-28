@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bhodcocps7th8"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_khbvh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8abcd"]
+points = PackedVector3Array(0.05, 0.05, 0.05, 0.05, 0.05, -0.05, -0.05, 0.05, 0.05, 0.05, -0.05, 0.05, 0.05, -0.05, -0.05, -0.05, 0.05, -0.05, -0.05, -0.05, 0.05, -0.05, -0.05, -0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hg2ne"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Cube" unique_id=1797814844 instance=ExtResource("1_khbvh")]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("ConvexPolygonShape3D_8abcd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=163945926]
+mesh = SubResource("BoxMesh_hg2ne")

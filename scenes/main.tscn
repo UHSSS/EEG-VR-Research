@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://c2yllc0wra32j"]
+
+[ext_resource type="Script" uid="uid://bjtuhixawy6xe" path="res://scripts/experiments/focus_experiment.gd" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://c74885ce11ttp" path="res://resources/experiment.gd" id="2_choun"]
+[ext_resource type="Script" uid="uid://ces1j6plojyra" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="2_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bfgnyqta4jlfl" path="res://prefabs/player/player.tscn" id="3_tipki"]
+[ext_resource type="Resource" uid="uid://kdw6cgoq8b6x" path="res://resources/experiments/rest.tres" id="3_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://m02bng5l0b0q" path="res://assets/textures/Light/texture_08.png" id="4_85g3d"]
+[ext_resource type="Resource" uid="uid://cpjroxr3wehjb" path="res://resources/experiments/breathe.tres" id="4_eb6dy"]
+[ext_resource type="Resource" uid="uid://klguljodwpmp" path="res://resources/experiments/rest2.tres" id="5_trceg"]
+[ext_resource type="Resource" uid="uid://do0arbcwhpu2d" path="res://resources/experiments/body_scan.tres" id="5_ya4ey"]
+[ext_resource type="Resource" uid="uid://cs7f3cxxhbw88" path="res://resources/experiments/sustained_attention.tres" id="6_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://bgv05oh51pgkk" path="res://assets/audio/ambience/freesound_community-computer_lab-33482.mp3" id="6_ya4ey"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bl13t"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_iyx0m"]
+sky_material = SubResource("ProceduralSkyMaterial_bl13t")
+
+[sub_resource type="Environment" id="Environment_74lek"]
+background_mode = 2
+sky = SubResource("Sky_iyx0m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74lek"]
+albedo_texture = ExtResource("4_85g3d")
+uv1_triplanar = true
+
+[node name="FocusRoom" type="Node3D" unique_id=1841970331 node_paths=PackedStringArray("player", "task_reference_node")]
+script = ExtResource("1_tefeu")
+player = NodePath("Player")
+experiments = Array[ExtResource("2_choun")]([ExtResource("3_ya4ey"), ExtResource("4_eb6dy"), ExtResource("5_ya4ey"), ExtResource("6_eb6dy"), ExtResource("5_trceg")])
+task_reference_node = NodePath("TaskReferenceNode")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1741097338]
+environment = SubResource("Environment_74lek")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1889126065]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="XRToolsStartXR" type="Node" parent="." unique_id=829629481]
+script = ExtResource("2_o6xl0")
+metadata/_custom_type_script = "uid://ces1j6plojyra"
+
+[node name="Player" parent="." unique_id=400043145 instance=ExtResource("3_tipki")]
+
+[node name="Room" type="CSGCombiner3D" parent="." unique_id=1912316]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room" unique_id=547792265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+flip_faces = true
+size = Vector3(10, 5, 10)
+material = SubResource("StandardMaterial3D_74lek")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=219213483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0)
+light_energy = 2.0
+omni_range = 8.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=710530836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 0)
+light_energy = 2.0
+omni_range = 8.0
+
+[node name="TaskReferenceNode" type="Node3D" parent="." unique_id=2073035021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5081276, -4.957386)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=47788077]
+stream = ExtResource("6_ya4ey")
+autoplay = true

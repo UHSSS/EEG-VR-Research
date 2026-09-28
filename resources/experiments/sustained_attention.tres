@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Experiment" format=3 uid="uid://cs7f3cxxhbw88"]
+
+[ext_resource type="Script" uid="uid://c74885ce11ttp" path="res://resources/experiment.gd" id="1_ttahl"]
+[ext_resource type="PackedScene" uid="uid://tcq7p8ds1mgi" path="res://prefabs/tasks/sustained_attention/sustained_attention.tscn" id="2_nf74k"]
+
+[resource]
+script = ExtResource("1_ttahl")
+experiment_name = "Sustained Attention"
+experiment_duration = 60
+start_marker = 5
+task_node = ExtResource("2_nf74k")
+metadata/_custom_type_script = "uid://c74885ce11ttp"
