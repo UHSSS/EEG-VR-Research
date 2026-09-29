@@ -25,19 +25,19 @@ func _ready() -> void:
 		print("Established UDP connection to " + HOST + ":" + str(PORT))
 		print("NOTE: UDP is connectionless, so there's no guarantee the host is alive.")
 
-func _physics_process(_delta: float) -> void:
-	listen();
+#func _physics_process(_delta: float) -> void:
+	#listen()
 
 func _exit_tree() -> void:
 	socket.close()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_recording"):
-		is_recording = !is_recording;
-		recording_toggled.emit();
+		is_recording = !is_recording
+		recording_toggled.emit()
 	elif event.is_action_pressed("reset"):
-		get_tree().reload_current_scene();
-		is_recording = false;
+		get_tree().reload_current_scene()
+		is_recording = false
 
 func send_socket_data(msg: String):
 	if not socket.is_socket_connected(): return
@@ -68,11 +68,11 @@ func send_galea_marker(marker_value: float) -> void:
 	print("Sent marker with value '", marker_value, "' to Galea GUI over port: ", PORT)
 
 func listen() -> void:
-	server.poll();
+	server.poll()
 	if server.is_connection_available():
-		var peer = Globals.server.take_connection();
-		var packet = peer.get_packet();
-		var msg = packet.get_string_from_utf8().replace("\n", "");
-		print("Accepted peer: %s:%s" % [peer.get_packet_ip(), peer.get_packet_port()]);
-		print("Received data: %s" % [packet.get_string_from_utf8()]);
-		msg_received.emit(msg);
+		var peer = Globals.server.take_connection()
+		var packet = peer.get_packet()
+		var msg = packet.get_string_from_utf8().replace("\n", "")
+		print("Accepted peer: %s:%s" % [peer.get_packet_ip(), peer.get_packet_port()])
+		print("Received data: %s" % [packet.get_string_from_utf8()])
+		msg_received.emit(msg)

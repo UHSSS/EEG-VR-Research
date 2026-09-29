@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		timer -= delta
 	elif timer <= 0 and not cur_experiment.manual_stop:
 		toggle_recording()
+		AudioManager.play_file(AudioManager.MUSIC_BOX_POSITIVE)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_recording"):
@@ -24,8 +25,8 @@ func _input(event: InputEvent) -> void:
 
 func toggle_recording() -> void:
 	if not recording:
-		print("---------- Begin %s Experiment ----------" % cur_experiment.experiment_name)
 		cur_experiment = experiments[cur_experiment_idx]
+		print("---------- Begin %s Experiment ----------" % cur_experiment.experiment_name)
 		timer = cur_experiment.experiment_duration
 		cur_experiment_node = Utils.create_child(cur_experiment.task_node, task_reference_node)
 		player.recenter_headset()
